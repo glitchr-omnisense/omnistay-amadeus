@@ -1,0 +1,20 @@
+{
+    "name": "omnistay/amadeus",
+    "type": "library",
+    "description": "Reserved, not released yet: Amadeus for omnisense/omnistay.",
+    "homepage": "https://github.com/glitchr-omnisense/omnistay-amadeus",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Meyer"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-1.x": "1.x-dev"
+        }
+    }
+}
