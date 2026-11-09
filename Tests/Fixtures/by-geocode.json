@@ -1,0 +1,6 @@
+{
+    "data": [
+        {"chainCode": "XX", "iataCode": "NCE", "dupeId": 700000001, "name": "Villa des Orangers", "hotelId": "XXNCE001", "geoCode": {"latitude": 43.6961, "longitude": 7.2718}, "address": {"countryCode": "FR"}, "distance": {"value": 1.2, "unit": "MILE"}}
+    ],
+    "meta": {"count": 1}
+}

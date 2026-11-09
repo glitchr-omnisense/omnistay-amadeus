@@ -1,0 +1,26 @@
+{
+    "data": {
+        "type": "hotel-order",
+        "id": "V0g2VFJaLzIwMjYtMTItMTg=",
+        "hotelBookings": [
+            {
+                "type": "hotel-booking",
+                "id": "MS84OTkyMjcxMC85MDIyNDU0OQ==",
+                "bookingStatus": "CONFIRMED",
+                "hotelProviderInformation": [{"hotelProviderCode": "ZZ", "confirmationNumber": "89922710"}],
+                "roomAssociations": [{"hotelOfferId": "TSXOJ6LFQ2", "guestReferences": [{"guestReference": "1"}]}],
+                "hotelOffer": {
+                    "id": "TSXOJ6LFQ2", "type": "hotel-offer", "checkInDate": "2026-12-18", "checkOutDate": "2026-12-21", "guests": {"adults": 2},
+                    "policies": {"cancellations": [{"amount": "130.00", "deadline": "2026-12-16T18:00:00+01:00"}], "paymentType": "GUARANTEE"},
+                    "price": {"base": "390.00", "currency": "EUR", "total": "435.60"},
+                    "roomQuantity": 1
+                },
+                "hotel": {"hotelId": "ZZNCENVX", "chainCode": "ZZ", "name": "HOTEL DE LA PROMENADE"},
+                "payment": {"method": "CREDIT_CARD", "paymentCard": {"paymentCardInfo": {"vendorCode": "VI", "cardNumber": "415128XXXXXX1370", "expiryDate": "0827", "holderName": "ALICE EXAMPLE"}}}
+            }
+        ],
+        "guests": [{"tid": 1, "id": 1, "title": "MS", "firstName": "ALICE", "lastName": "EXAMPLE", "phone": "+33600000000", "email": "alice@example.org"}],
+        "associatedRecords": [{"reference": "WH6TRZ", "originSystemCode": "GDS"}],
+        "self": "https://test.api.amadeus.com/v2/booking/hotel-orders/V0g2VFJaLzIwMjYtMTItMTg="
+    }
+}

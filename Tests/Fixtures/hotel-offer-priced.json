@@ -1,0 +1,16 @@
+{
+    "data": {
+        "type": "hotel-offers",
+        "hotel": {"type": "hotel", "hotelId": "ZZNCENVX", "chainCode": "ZZ", "name": "HOTEL DE LA PROMENADE", "cityCode": "NCE"},
+        "available": true,
+        "offers": [
+            {
+                "id": "TSXOJ6LFQ2", "checkInDate": "2026-12-18", "checkOutDate": "2026-12-21", "rateCode": "BAR", "roomQuantity": "1",
+                "room": {"type": "A1K", "description": {"text": "Superior room, sea view, king bed", "lang": "FR"}},
+                "guests": {"adults": 2},
+                "price": {"currency": "EUR", "base": "390.00", "total": "435.60", "taxes": [{"amount": "39.00", "currency": "EUR", "code": "VALUE_ADDED_TAX", "included": false}, {"amount": "6.60", "currency": "EUR", "code": "CITY_TAX", "description": "Taxe de sejour", "included": false}]},
+                "policies": {"paymentType": "GUARANTEE", "cancellations": [{"amount": "130.00", "deadline": "2026-12-16T18:00:00+01:00", "description": {"text": "Free until two days before arrival"}}], "checkInOut": {"checkIn": "15:00:00", "checkOut": "11:00:00"}}
+            }
+        ]
+    }
+}

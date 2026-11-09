@@ -1,0 +1,8 @@
+{
+    "data": [
+        {"chainCode": "ZZ", "iataCode": "NCE", "dupeId": 504813011, "name": "HOTEL DE LA PROMENADE", "hotelId": "ZZNCENVX", "geoCode": {"latitude": 43.66665, "longitude": 7.21465}, "address": {"countryCode": "FR"}, "distance": {"value": 0.92, "unit": "KM"}},
+        {"chainCode": "NN", "iataCode": "NCE", "dupeId": 700091936, "name": "EXAMPLE NICE AEROPORT", "hotelId": "NNNCE357", "geoCode": {"latitude": 43.66686, "longitude": 7.21397}, "address": {"countryCode": "FR"}, "distance": {"value": 0.96, "unit": "KM"}},
+        {"chainCode": "XX", "iataCode": "NCE", "dupeId": 700000001, "name": "Villa des Orangers", "hotelId": "XXNCE001", "geoCode": {"latitude": 43.6961, "longitude": 7.2718}, "address": {"countryCode": "FR"}, "distance": {"value": 4.3, "unit": "KM"}}
+    ],
+    "meta": {"count": 3, "links": {"self": "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?cityCode=NCE&radius=5"}}
+}

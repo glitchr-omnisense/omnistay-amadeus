@@ -1,0 +1,6 @@
+{
+    "data": [
+        {"chainCode": "AR", "iataCode": "MAD", "dupeId": 700000002, "name": "EXAMPLE HOTEL AITANA", "hotelId": "ARMADAIT", "geoCode": {"latitude": 40.46, "longitude": -3.69}, "address": {"countryCode": "ES"}}
+    ],
+    "meta": {"count": 1}
+}

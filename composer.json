@@ -1,7 +1,8 @@
 {
     "name": "omnistay/amadeus",
     "type": "library",
-    "description": "Reserved, not released yet: Amadeus for omnisense/omnistay.",
+    "description": "Omnistay's Amadeus, under any PHP host: hotels through Amadeus' hotel APIs - a city's or a point's hotels (Hotel List), their offers for a stay priced night by night with taxes and cancellation policy (Hotel Search), an offer re-priced before booking, a booking guaranteed by a card (Hotel Booking) - with an application's client id and secret, on the test environment by default.",
+    "keywords": ["amadeus", "hotel", "hotel-search", "hotel-booking", "gds", "framework-agnostic", "omnistay"],
     "homepage": "https://github.com/glitchr-omnisense/omnistay-amadeus",
     "license": "MIT",
     "authors": [
@@ -10,11 +11,33 @@
         }
     ],
     "require": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "omnisense/omnistay": "^1.0@dev",
+        "symfony/http-client": "^6.4|^7.0|^8.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnistay\\Amadeus\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnistay\\Amadeus\\Tests\\": "Tests/"
+        }
     },
     "extra": {
         "branch-alias": {
             "dev-1.x": "1.x-dev"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
