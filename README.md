@@ -23,5 +23,13 @@ $registry->search('hotels')->search(new StayQuery(Stay::of('2026-12-18', '2026-1
 
 Not offered by those APIs: a search by text, a property's calendar, cancelling or reading an
 order again (`booking()` answers null). Amadeus closed its Self-Service portal on 2026-07-17; the
-same APIs are offered under its Enterprise contracts (`host` option). See
+same APIs are offered under its Enterprise contracts (`host` option).
+
+Its usage policy is data, in [policy.json](policy.json) (omnisense/contracts' schema, `verifiedAt`
+2026-11-10, read in Amadeus' archived developer guides: the Self-Service terms can no longer be
+read): 40 calls a second per key in production, 10 on the test environment (the provider gives
+that rate there), commercial use on contract, caching, storage, redistribution and credit
+unknown. Through omnistay's registry a call over a limit is never made
+(`UsageLimitReachedException`), a 429 and its `Retry-After` hold every call until the wait is over,
+and a site may lower the rate, never raise it. See
 [docs/index.md](docs/index.md). License: MIT.

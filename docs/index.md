@@ -37,6 +37,21 @@ Every call carries `Authorization: Bearer <token>`.
 - `bookingStatus`: `CONFIRMED` → confirmed; `PENDING`, `ON_HOLD` → on request; `UNCONFIRMED`,
   `DENIED` → refused; `PAST` → completed.
 
+## Usage policy
+
+[policy.json](../policy.json) (`AmadeusProvider::usagePolicy()`), read on 2026-11-10: the
+Self-Service offer is gone - its developer guides archived on 2026-07-17 ("[DEPRECATED]"), its API
+keys disabled that day, `test.api.amadeus.com` no longer resolving, its terms-of-service address
+showing the cookies policy only; the Enterprise APIs remain, on contract. Declared from the
+archived rate-limits guide: 40 transactions a second per user in production, 10 on the test
+environment (no more than one request every 100 ms) - the provider gives that rate in place of
+production's when `environment` is `test`. Commercial use is a contract (production required
+signing the terms); caching, storage, redistribution, attribution and the data's licence are
+unknown, the terms being gone. The limits count calls (`search`, `availability`, `offer`, `book`,
+`booking`, `property`, `properties`), not HTTP requests: a search is one Hotel List request and a
+Hotel Search request per twenty hotels. The JSON client is given the provider's Backoff: a 429
+and its `Retry-After` hold every call, the token's request included.
+
 ## Verified, and not
 
 The tests answer from files written by hand after the Self-Service specifications

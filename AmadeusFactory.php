@@ -18,7 +18,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * https://api.amadeus.com), host (another address, an enterprise one),
  * currency and language (the offers' when the query says none),
  * hotel_source (ALL, BEDBANK or DIRECTCHAIN), agency_email (the travel
- * agent's contact a booking carries; the guest's when none).
+ * agent's contact a booking carries; the guest's when none); policy (a
+ * tightening of Amadeus' usage policy: a lower rate...), usage (commercial,
+ * open_source, contract).
  */
 final class AmadeusFactory extends ProviderFactory
 {
@@ -48,7 +50,7 @@ final class AmadeusFactory extends ProviderFactory
     {
         $environment = $c->string('environment') ?? 'test';
         $host = rtrim($c->string('host') ?? self::HOSTS[$environment] ?? throw new InvalidConfigException(\sprintf('Amadeus\' environment is "test" or "production", not "%s".', $environment)), '/');
-        $json = new JsonClient($this->http ?? HttpClient::create(['timeout' => 30]), 'Amadeus', ['Accept' => 'application/vnd.amadeus+json, application/json']);
+        $json = new JsonClient($this->http ?? HttpClient::create(['timeout' => 30]), 'Amadeus', ['Accept' => 'application/vnd.amadeus+json, application/json'], $c->backoff());
 
         return new AmadeusProvider(
             $json,

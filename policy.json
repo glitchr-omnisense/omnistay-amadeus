@@ -1,0 +1,39 @@
+{
+    "$schema": "https://github.com/glitchr-omnisense/contracts/blob/1.x/resources/usage-policy.schema.json",
+    "provider": "amadeus",
+    "rateLimits": [
+        {
+            "max": 40,
+            "window": "second",
+            "scope": "key",
+            "operations": [],
+            "note": "Production: 40 transactions a second per user, as Amadeus for Developers' rate-limits guide stated it (archived). The test environment allowed 10 a second, no more than one request every 100 ms: the provider gives that rate in place of this one when it is configured on the test environment. Amadeus counts HTTP requests, the guard counts calls: a search is a Hotel List request and up to one Hotel Search request per 20 hotels, an access token is one more request."
+        }
+    ],
+    "rights": {
+        "commercial": "contract",
+        "openSourceRequired": null,
+        "caching": {"permission": "unknown", "maxTtl": null},
+        "storage": "unknown",
+        "redistribution": "unknown",
+        "attribution": {
+            "required": false,
+            "text": null,
+            "url": null,
+            "where": []
+        },
+        "licence": null
+    },
+    "requirements": {
+        "key": true,
+        "userAgent": {"required": false, "pattern": null}
+    },
+    "provenance": {
+        "terms": "https://developers.amadeus.com/legal/terms-of-service",
+        "policy": "https://github.com/amadeus4dev/developer-guides",
+        "verifiedAt": "2026-11-10",
+        "declaredBy": "maintainer",
+        "contact": "https://amadeus.com/en/contact",
+        "notes": "Amadeus for Developers' Self-Service offer is gone: its developer guides were archived on 2026-07-17 ('[DEPRECATED] The Amadeus for Developers Self-Service offer has been deprecated'), the letter to its users (quoted by PhocusWire, 2026-02-09) said API keys would be disabled on July 17, test.api.amadeus.com no longer resolves, and the terms-of-service address now shows the cookies policy only. Amadeus says its Enterprise Portal and Enterprise APIs remain available, on contract (amadeus.com/en/contact). Production under Self-Service required signing its terms of service: commercial use is a contract. The terms themselves can no longer be read: caching, storage, redistribution, attribution and the data's licence are unknown. Card data in a booking falls under PCI DSS. Rate limits from the archived guide (docs/api-rate-limits.md); the monthly free quotas per API in test were never given as figures there."
+    }
+}

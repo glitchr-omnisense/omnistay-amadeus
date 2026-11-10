@@ -2,6 +2,8 @@
 
 namespace Omnistay\Amadeus;
 
+use Omnisense\Contracts\Policy\DeclaresUsagePolicyInterface;
+use Omnisense\Contracts\Policy\UsagePolicy;
 use Omnistay\AvailabilityInterface;
 use Omnistay\BookInterface;
 use Omnistay\Capabilities;
@@ -52,9 +54,26 @@ use Omnistay\SearchInterface;
  * that has dates, books with a card. There is no cancellation nor retrieval
  * of an order in those APIs: CancelInterface is not implemented and
  * booking() answers null. Every call carries the access token (Auth).
+ *
+ * Its usage policy is policy.json, beside this class (POLICY): 40 calls a
+ * second in production, 10 on the test environment (usagePolicy() gives
+ * that rate when the provider is configured there), commercial use on
+ * contract. Amadeus decommissioned its Self-Service offer in 2026 (keys
+ * disabled on 2026-07-17): only its Enterprise APIs remain, on contract,
+ * reached through the "host" option.
  */
-final class AmadeusProvider implements ProviderInterface, SearchInterface, AvailabilityInterface, BookInterface, ContentInterface
+final class AmadeusProvider implements ProviderInterface, SearchInterface, AvailabilityInterface, BookInterface, ContentInterface, DeclaresUsagePolicyInterface
 {
+    /** Amadeus' usage policy, as read on the day it says (provenance.verifiedAt). */
+    public const POLICY = __DIR__.'/policy.json';
+
+    /** The test environment's rate, in place of production's when the provider is configured there. */
+    public const TEST_RATE = ['max' => 10, 'window' => 'second', 'scope' => 'key', 'operations' => [], 'note' => 'The test environment: 10 transactions a second, no more than one request every 100 ms.'];
+
+    private static ?UsagePolicy $declared = null;
+
+    private ?UsagePolicy $policy = null;
+
     /** Hotel Search takes at most 20 hotels per call. */
     public const MAX_HOTELS = 20;
 
@@ -81,12 +100,22 @@ final class AmadeusProvider implements ProviderInterface, SearchInterface, Avail
         return 'Amadeus hotels';
     }
 
+    public function usagePolicy(): UsagePolicy
+    {
+        $declared = self::$declared ??= UsagePolicy::fromFile(self::POLICY);
+
+        // In place of production's 40 a second, not beside it: a policy holding two limits that count
+        // the same calls could not be tightened again by the site (UsagePolicy::tighten()).
+        return $this->policy ??= $this->sandbox ? UsagePolicy::fromArray(['rateLimits' => [self::TEST_RATE]] + $declared->toArray()) : $declared;
+    }
+
     public function capabilities(): Capabilities
     {
         return new Capabilities(
             search: true, availability: true, book: true, content: true,
             searchBy: ['cityCode', 'point'], kinds: [PropertyKind::Hotel], pricedSearch: true, cardPayment: true, sandbox: $this->sandbox,
             terms: ['https://developers.amadeus.com/legal/terms-of-service'],
+            policy: $this->usagePolicy(),
         );
     }
 
